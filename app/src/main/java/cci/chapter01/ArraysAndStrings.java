@@ -13,17 +13,9 @@ public class ArraysAndStrings {
    * 1.1.1 Is Unique
    * Implement an algorithm to determine if a string has all unique characters.
    * What if you cannot use additional data structures?
-   *
-   * Algorithm:
-   * var hashmap = new hashmap
-   * for c in s:
-   * var x = hashmap.get(c)
-   * if: x is null then add to hashmap
-   * else: return false
-   * return true
    * 
    * @param s
-   * @return boolean
+   * @return true if the input string is unique
    */
   public static boolean isUnique(String s) {
     HashMap<Character, Boolean> hashMap = new HashMap<>();
@@ -39,14 +31,14 @@ public class ArraysAndStrings {
   }
 
   /**
-   * 1.1.2 Is Unique logarithmic
+   * 1.1.2 Is Unique Two Pointers
    * Algorithm:
    * from either end of the string check to see if the character is in the
    * hashmap. If not, add to hashmap. If the items are in the hashmap then there
-   * is a duplicate so the method should return false
+   * is a duplicate so the method should return false.
    * 
    * @param s
-   * @return
+   * @return true if the input string is unique
    */
   public static boolean isUniqueTwoPointers(String s) {
     HashMap<Character, Boolean> hashMap = new HashMap<>();
@@ -67,13 +59,6 @@ public class ArraysAndStrings {
    * 1.2 Check Permutation
    * Given two strings, write a method to decide if one is a permutation of the
    * other
-   * 
-   * Algorithm:
-   * if r.length > s.length return false
-   * convert strings to char arrays
-   * add s chars to hashmap a where key = char value = count
-   * add r chars to hashmap b where key = char value = count
-   * if hashmap a == hashmap b return true else false
    */
   public static boolean isPermutation(String s, String r) {
     if (r.length() > s.length() || s.toLowerCase().equals(r.toLowerCase()))
@@ -81,7 +66,6 @@ public class ArraysAndStrings {
     HashMap<Character, Integer> a = new HashMap<>();
     HashMap<Character, Integer> b = new HashMap<>();
 
-    // for (int i = 0, j = )
     for (Character c : s.toCharArray()) {
       a.put(c, a.get(a) != null ? a.get(a) + 1 : 1);
     }
@@ -95,14 +79,7 @@ public class ArraysAndStrings {
   /**
    * 1.2 Check Permutation
    * Given two strings, write a method to decide if one is a permutation of the
-   * other
-   * 
-   * Algorithm:
-   * if r.length > s.length return false
-   * convert strings to char arrays
-   * add s chars to hashmap a where key = char value = count
-   * add r chars to hashmap b where key = char value = count
-   * if hashmap a == hashmap b return true else false
+   * other.
    */
   public static boolean isPermutationTwoPointers(String s, String r) {
     if (r.length() > s.length() || s.toLowerCase().equals(r.toLowerCase()))
