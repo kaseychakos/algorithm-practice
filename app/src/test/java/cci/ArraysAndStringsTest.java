@@ -1,6 +1,7 @@
 package cci;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
@@ -12,31 +13,46 @@ import cci.chapter01.ArraysAndStrings;
 
 public class ArraysAndStringsTest {
 
+  // Is Unique
+  @ParameterizedTest
+  @DisplayName("ArraysAndStrings - isNotUnique")
+  @ValueSource(strings = { "unique", "Hanna", "Jeremy", "sports" })
+  void isNotUniqueTest(String string) {
+    assertFalse(ArraysAndStrings.isUnique(string), () -> "Expected a false result but got true.");
+  }
+
   @ParameterizedTest
   @DisplayName("ArraysAndStrings - isUnique")
-  // expect fail
-  // @ValueSource(strings = { "unique", "Hanna", "Jeremy", "sports" })
-  // expect pass
-  @ValueSource(strings = { "solid", "Kasey", "Chakos", "sport" }) //
+  @ValueSource(strings = { "solid", "Kasey", "Chakos", "sport" })
   void isUniqueTest(String string) {
     assertTrue(ArraysAndStrings.isUnique(string), () -> "Expected a true result but got false.");
   }
 
   @ParameterizedTest
-  @DisplayName("ArraysAndStrings - isUniqueLog")
-  // expect fail
-  // @ValueSource(strings = { "unique", "Adam", "Mikayla", "sports" })
-  // expect pass
-  @ValueSource(strings = { "solid", "Kasey", "Chakos", "sport" }) //
-  void isUniqueLogTest(String string) {
+  @DisplayName("ArraysAndStrings - isNotUniqueTwoPointers")
+  @ValueSource(strings = { "unique", "Adam", "Mikayla", "sports" })
+  void isNotUniqueTwoPointersTest(String string) {
+    assertFalse(ArraysAndStrings.isUniqueTwoPointers(string));
+  }
+
+  @ParameterizedTest
+  @DisplayName("ArraysAndStrings - isUniqueTwoPointers")
+  @ValueSource(strings = { "solid", "Kasey", "Chakos", "sport" })
+  void isUniqueTwoPointersTest(String string) {
     assertTrue(ArraysAndStrings.isUniqueTwoPointers(string));
+  }
+
+  // Permutation
+  @ParameterizedTest
+  @DisplayName("ArraysAndStrings - isNotPermutation")
+  @ValueSource(strings = { "solid", "Kasey", "Chakos", "sport" })
+  void isNotPermutationTest(String string) {
+    String base = "abcd";
+    assertFalse(ArraysAndStrings.isPermutation(string, base));
   }
 
   @ParameterizedTest
   @DisplayName("ArraysAndStrings - isPermutation")
-  // expect fail
-  // @ValueSource(strings = { "solid", "Kasey", "Chakos", "sport" })
-  // expect pass
   @ValueSource(strings = { "bacd", "abdc", "badc", "cabd" })
   void isPermutationTest(String string) {
     String base = "abcd";
@@ -44,16 +60,22 @@ public class ArraysAndStringsTest {
   }
 
   @ParameterizedTest
-  @DisplayName("ArraysAndStrings - isPermutationLog")
-  // expect fail
-  // @ValueSource(strings = { "solid", "Kasey", "Chakos", "sport" })
-  // expect pass
+  @DisplayName("ArraysAndStrings - isNotPermutationTwoPointers")
+  @ValueSource(strings = { "solid", "Kasey", "Chakos", "sport" })
+  void isNotPermutationTwoPointerTest(String string) {
+    String base = "abcd";
+    assertFalse(ArraysAndStrings.isPermutationTwoPointers(string, base));
+  }
+
+  @ParameterizedTest
+  @DisplayName("ArraysAndStrings - isPermutationTwoPointers")
   @ValueSource(strings = { "bacd", "abdc", "badc", "cabd" })
-  void isPermutationLogTest(String string) {
+  void isPermutationTwoPointerTest(String string) {
     String base = "abcd";
     assertTrue(ArraysAndStrings.isPermutationTwoPointers(string, base));
   }
 
+  // URLify
   @Test
   @DisplayName("ArraysAndStrings - urlify")
   void urlifyTest() {
